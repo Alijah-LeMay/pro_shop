@@ -1,9 +1,16 @@
 import React from 'react';
+import { Route } from 'react-router-dom';
+// BootStrap
 import { Container, Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
+// Redux
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../store/actions/userActions';
+
+// My Components
+import SearchBox from '../SearchBox';
+
 const Header = () => {
   const dispatch = useDispatch();
   const userLogin = useSelector((state) => state.userLogin);
@@ -22,6 +29,7 @@ const Header = () => {
           </LinkContainer>
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
           <Navbar.Collapse id='basic-navbar-nav'>
+            <Route render={({ history }) => <SearchBox history={history} />} />
             <Nav className='ml-auto'>
               <LinkContainer to='/cart'>
                 <Nav.Link>
